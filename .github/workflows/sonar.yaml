@@ -1,0 +1,14 @@
+name: SonarCloud Project Creation
+
+on:
+  repository:
+    types: [created]
+
+jobs:
+  create-sonar-project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Execute curl command
+        run: |
+          curl -v -X POST https://6fc64e77a52492cc3cf278022dc09d987a996389@sonarcloud.io/api/projects/create \
+          -d "name=${{ github.event.repository.name }}"&project=${{ github.event.repository.name }}"&organization=thedevfactory-ai"
